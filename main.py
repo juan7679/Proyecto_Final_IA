@@ -23,7 +23,7 @@ opciones = HandLandmarkerOptions(
 )
 
 def calcular_distancia(p1, p2):
-    #Calcula la distancia euclidiana entre dos puntos (x, y).
+    """Calcula la distancia euclidiana entre dos puntos (x, y)."""
     return math.hypot(p2[0] - p1[0], p2[1] - p1[1])
 
 # =====================================================================
@@ -98,7 +98,16 @@ def iniciar_backend_dibujo():
                                 distancia = calcular_distancia(
                                     (x_indice, y_indice), (x_pulgar, y_pulgar)
                                 )
-                                if distancia < 40:
+                                # Tamaño de la mano = distancia entre muñeca y dedo medio
+                                x_muneca = int(mano[0].x * ancho)
+                                y_muneca = int(mano[0].y * alto)
+                                x_medio  = int(mano[12].x * ancho)
+                                y_medio  = int(mano[12].y * alto)
+                                tamano_mano = calcular_distancia(
+                                    (x_muneca, y_muneca), (x_medio, y_medio)
+                                )
+                                umbral = tamano_mano * 0.35  # 35% del tamaño de la mano
+                                if distancia < umbral:
                                     cv2.circle(frame, (x_indice, y_indice), 10, (0, 255, 0), cv2.FILLED)
                                     if x_anterior == 0 and y_anterior == 0:
                                         x_anterior, y_anterior = x_indice, y_indice
