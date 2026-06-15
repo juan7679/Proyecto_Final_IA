@@ -137,4 +137,4 @@ python main.py
 
 ## 📄 License
 
-This project was developed for academic purposes at [Your University Name].
+This project was developed for academic purposes at [Universidad de Guanajuato].
