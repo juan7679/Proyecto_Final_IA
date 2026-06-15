@@ -3,3 +3,4 @@ __pycache__/
 hand_landmarker.task
 *.pyc
 .vscode/
+README.txt
